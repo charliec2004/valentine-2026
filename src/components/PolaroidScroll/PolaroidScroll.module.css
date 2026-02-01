@@ -1,0 +1,126 @@
+.container {
+  position: relative;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  padding-bottom: var(--spacing-2xl);
+  min-height: 300vh; /* Enough space for all polaroids */
+  z-index: var(--z-content);
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
+}
+
+.introTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+.introSubtitle {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: var(--color-text-light);
+}
+
+.polaroidGrid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4rem, 10vh, 8rem);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Create scattered effect with nth-child patterns */
+.polaroidGrid > *:nth-child(3n + 1) {
+  align-self: flex-start;
+  margin-left: clamp(0%, 5vw, 10%);
+}
+
+.polaroidGrid > *:nth-child(3n + 2) {
+  align-self: center;
+}
+
+.polaroidGrid > *:nth-child(3n) {
+  align-self: flex-end;
+  margin-right: clamp(0%, 5vw, 10%);
+}
+
+/* Add some variety to the gaps */
+.polaroidGrid > *:nth-child(4n) {
+  margin-top: 2rem;
+}
+
+.polaroidGrid > *:nth-child(5n) {
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .container {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .polaroidGrid {
+    gap: clamp(3rem, 8vh, 6rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    min-height: 250vh;
+    padding: var(--spacing-md);
+  }
+
+  .intro {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .polaroidGrid {
+    gap: clamp(2.5rem, 6vh, 4rem);
+    padding: 0;
+  }
+
+  /* More centered layout on mobile */
+  .polaroidGrid > *:nth-child(3n + 1),
+  .polaroidGrid > *:nth-child(3n + 2),
+  .polaroidGrid > *:nth-child(3n) {
+    align-self: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Slight offset for variety on mobile */
+  .polaroidGrid > *:nth-child(odd) {
+    transform: translateX(-5%);
+  }
+
+  .polaroidGrid > *:nth-child(even) {
+    transform: translateX(5%);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    min-height: 200vh;
+  }
+
+  .polaroidGrid {
+    gap: 2rem;
+  }
+}
+
+/* Optional: Scroll snap on mobile for intentional viewing */
+@media (max-width: 768px) and (hover: none) {
+  .polaroidGrid {
+    scroll-snap-type: y proximity;
+  }
+
+  .polaroidGrid > * {
+    scroll-snap-align: center;
+  }
+}

@@ -1,0 +1,139 @@
+@import './variables.css';
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Animated Gradient Background */
+#root {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-start) 0%,
+    var(--color-primary-light) 25%,
+    var(--color-bg-end) 50%,
+    var(--color-primary-light) 75%,
+    var(--color-bg-start) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientBreathing 15s ease infinite;
+}
+
+@keyframes gradientBreathing {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Subtle noise overlay for warmth */
+#root::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.02;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: var(--z-background);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.handwritten {
+  font-family: var(--font-handwritten);
+}
+
+/* Interactive elements */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  #root {
+    animation: none;
+    background-size: 100% 100%;
+  }
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+/* Utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

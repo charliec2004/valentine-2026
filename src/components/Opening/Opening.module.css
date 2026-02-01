@@ -1,0 +1,94 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: var(--spacing-lg);
+  z-index: var(--z-content);
+}
+
+.content {
+  text-align: center;
+  max-width: 800px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  color: var(--color-text-light);
+  opacity: 0.9;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: var(--spacing-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.scrollText {
+  font-family: var(--font-handwritten);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+}
+
+.scrollArrow {
+  color: var(--color-secondary);
+  opacity: 0.7;
+}
+
+/* Subtle hover effect on scroll indicator */
+.scrollIndicator:hover .scrollArrow {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md);
+  }
+
+  .scrollIndicator {
+    bottom: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .scrollText {
+    font-size: 0.8rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scrollArrow {
+    animation: none;
+  }
+}

@@ -1,0 +1,90 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+  min-height: 44px; /* Touch-friendly minimum */
+  min-width: 44px;
+  text-decoration: none;
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+/* Size variants */
+.normal {
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+}
+
+.large {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+}
+
+/* Primary variant - gradient pink/rose */
+.primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary-light) 100%
+  );
+  color: white;
+  box-shadow:
+    0 4px 15px rgba(230, 57, 70, 0.3),
+    0 0 0 0 rgba(255, 182, 193, 0);
+}
+
+.primary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    var(--color-secondary) 100%
+  );
+  box-shadow:
+    0 6px 20px rgba(230, 57, 70, 0.4),
+    0 0 20px rgba(255, 182, 193, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Secondary variant - outline style */
+.secondary {
+  background: transparent;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 2px 10px rgba(230, 57, 70, 0.1);
+}
+
+.secondary:hover {
+  background: var(--color-secondary);
+  color: white;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .normal {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .large {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
